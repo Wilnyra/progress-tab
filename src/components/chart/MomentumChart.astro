@@ -1,0 +1,161 @@
+---
+import {
+  VIEW,
+  AXIS_Y,
+  X_START,
+  X_END,
+  momentumPath,
+  momentumAreaPath,
+  timePath,
+  milestones,
+} from './chartData'
+
+interface Props {
+  class?: string
+}
+const { class: className = '' } = Astro.props
+
+const DRAW_DURATION = 2.1
+
+// When the drawing line's tip reaches a given x, so markers reveal in step.
+const drawDelay = (x: number) =>
+  ((x - X_START) / (X_END - X_START)) * DRAW_DURATION
+
+const drawStyle = `stroke-dasharray:1;stroke-dashoffset:1;animation:draw-line ${DRAW_DURATION}s cubic-bezier(0.4,0,0.2,1) forwards;`
+---
+
+<svg
+  class={`h-full w-full ${className}`}
+  viewBox={`0 0 ${VIEW.width} ${VIEW.height}`}
+  preserveAspectRatio="xMidYMax meet"
+  role="img"
+  aria-label="A rising green momentum curve climbing well above a flatter dashed blue time line, marked with progress milestones up to today."
+>
+  <defs>
+    <linearGradient id="momentum-stroke" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="hsl(160 60% 50%)"></stop>
+      <stop offset="100%" stop-color="hsl(150 80% 65%)"></stop>
+    </linearGradient>
+    <linearGradient id="momentum-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="hsl(160 65% 55%)" stop-opacity="0.18"></stop>
+      <stop offset="100%" stop-color="hsl(160 65% 55%)" stop-opacity="0"></stop>
+    </linearGradient>
+    <filter id="line-glow" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur stdDeviation="7" result="blur"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+    <filter id="dot-glow" x="-120%" y="-120%" width="340%" height="340%">
+      <feGaussianBlur stdDeviation="6"></feGaussianBlur>
+    </filter>
+  </defs>
+
+  <line
+    x1="24"
+    y1={AXIS_Y}
+    x2={VIEW.width - 24}
+    y2={AXIS_Y}
+    stroke="hsl(240 4% 22%)"
+    stroke-width="1.5"></line>
+
+  <path
+    d={momentumAreaPath}
+    fill="url(#momentum-fill)"
+    class="animate-fade-up"
+    style={`animation-delay:${DRAW_DURATION * 0.55}s`}></path>
+
+  <path
+    d={timePath}
+    fill="none"
+    stroke="hsl(224 76% 62%)"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-dasharray="2 10"
+    style="opacity:0;animation:fade-in 1.6s ease-out 0.4s forwards"></path>
+
+  {
+    milestones.map((m) => (
+      <line
+        x1={m.x}
+        y1={m.y}
+        x2={m.x}
+        y2={AXIS_Y}
+        stroke="hsl(240 5% 45%)"
+        stroke-width="1.25"
+        stroke-dasharray="3 6"
+        class="animate-fade-up"
+        style={`animation-delay:${drawDelay(m.x)}s`}
+      />
+    ))
+  }
+
+  <path
+    d={momentumPath}
+    fill="none"
+    stroke="hsl(160 70% 55%)"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#line-glow)"
+    opacity="0.6"
+    pathLength="1"
+    style={drawStyle}></path>
+  <path
+    d={momentumPath}
+    fill="none"
+    stroke="url(#momentum-stroke)"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    pathLength="1"
+    style={drawStyle}></path>
+
+  {
+    milestones.map((m) => (
+      <g>
+        <circle cx={m.x} cy={AXIS_Y} r="4" fill="hsl(240 5% 40%)" />
+        <text
+          x={m.x}
+          y={AXIS_Y + 34}
+          text-anchor="middle"
+          class="animate-fade-up"
+          style={`animation-delay:${drawDelay(m.x) + 0.1}s`}
+          fill={m.emphasis ? 'hsl(0 0% 98%)' : 'hsl(240 5% 64%)'}
+          font-size="22"
+          font-weight={m.emphasis ? 700 : 400}
+          font-family="inherit"
+        >
+          {m.label}
+        </text>
+      </g>
+    ))
+  }
+
+  {
+    milestones.map((m) => (
+      <g
+        style={`transform-origin:${m.x}px ${m.y}px;opacity:0;animation:pop-dot 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;animation-delay:${drawDelay(m.x)}s`}
+      >
+        {m.emphasis && (
+          <circle
+            cx={m.x}
+            cy={m.y}
+            r="11"
+            fill="hsl(150 80% 60%)"
+            filter="url(#dot-glow)"
+          />
+        )}
+        <circle
+          cx={m.x}
+          cy={m.y}
+          r={m.emphasis ? 9 : 7.5}
+          fill={m.emphasis ? 'hsl(150 80% 62%)' : 'hsl(0 0% 100%)'}
+          stroke="hsl(240 10% 3.5%)"
+          stroke-width={m.emphasis ? 0 : 3}
+        />
+      </g>
+    ))
+  }
+</svg>

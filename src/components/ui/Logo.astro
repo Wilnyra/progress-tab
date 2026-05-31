@@ -1,0 +1,32 @@
+---
+interface Props {
+  class?: string
+}
+const { class: className = '' } = Astro.props
+---
+
+<a
+  href="#top"
+  class={`group inline-flex items-center gap-2.5 text-foreground ${className}`}
+  aria-label="The Tab Progress — home"
+>
+  <svg
+    class="h-8 w-8 shrink-0 transition-transform duration-300 group-hover:rotate-12"
+    viewBox="0 0 32 32"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M16 3 28 9.5v13L16 29 4 22.5v-13z"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linejoin="round"></path>
+    <path
+      d="M10.5 18.5 15 14l4.5 4.5"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+  <span class="text-lg font-semibold tracking-tight">The Tab Progress</span>
+</a>

@@ -1,0 +1,19 @@
+---
+import Logo from '@/components/ui/Logo.astro'
+import Button from '@/components/ui/Button.astro'
+import ArrowRight from '@/components/ui/ArrowRight.astro'
+import { APP_URL } from '@/lib/config'
+---
+
+<header class="absolute inset-x-0 top-0 z-50">
+  <div
+    class="mx-auto flex max-w-container items-center justify-between gap-4 px-5 py-5 sm:px-8 sm:py-6 lg:px-12"
+  >
+    <Logo />
+
+    <Button href={APP_URL} size="md">
+      Start tracking
+      <ArrowRight />
+    </Button>
+  </div>
+</header>

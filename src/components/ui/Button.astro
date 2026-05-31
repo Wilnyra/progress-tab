@@ -1,0 +1,32 @@
+---
+interface Props {
+  href: string
+  variant?: 'solid' | 'ghost'
+  size?: 'md' | 'lg'
+  class?: string
+}
+
+const { href, variant = 'solid', size = 'md', class: className = '' } =
+  Astro.props
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-md font-medium ' +
+  'transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 ' +
+  'focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background ' +
+  'whitespace-nowrap select-none'
+
+const variants = {
+  solid:
+    'bg-foreground text-background shadow-sm hover:bg-foreground/90 active:scale-[0.98]',
+  ghost: 'text-foreground/80 hover:text-foreground hover:bg-white/5',
+}
+
+const sizes = {
+  md: 'h-10 px-4 text-sm',
+  lg: 'h-12 px-6 text-[0.95rem]',
+}
+---
+
+<a href={href} class={`${base} ${variants[variant]} ${sizes[size]} ${className}`}>
+  <slot />
+</a>
