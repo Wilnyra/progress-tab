@@ -22,7 +22,17 @@ export default {
           'Arial',
           'sans-serif',
         ],
-        display: ['"Anton"', 'Impact', 'Haettenschweiler', 'sans-serif'],
+        display: [
+          '"Anton"',
+          '"Anton Fallback"',
+          '"Oswald"',
+          '"Arial Narrow"',
+          'Impact',
+          'Haettenschweiler',
+          '"Franklin Gothic Bold"',
+          '"Arial Black"',
+          'sans-serif',
+        ],
       },
       maxWidth: {
         container: '1440px',

@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Anton Fallback';
+  src:
+    local('Impact'), local('Haettenschweiler'), local('Arial Narrow Bold'),
+    local('Arial Narrow'), local('Oswald'), local('Roboto Condensed');
+  font-weight: 400;
+  font-style: normal;
+  size-adjust: 92%;
+  ascent-override: 98%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
 @layer base {
   :root {
     color-scheme: dark;
