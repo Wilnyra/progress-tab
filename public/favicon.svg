@@ -1,17 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#0a0a0c" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Regular pointy-top hexagon, centered on (16,16), filling the frame -->
   <path
-    d="M16 4 27 10v12L16 28 5 22V10z"
-    fill="none"
-    stroke="#fff"
-    stroke-width="1.6"
-    stroke-linejoin="round"
-  />
-  <path
-    d="M11 17l4-3 4 3"
-    fill="none"
-    stroke="#4ade9e"
+    d="M16 1 28.99 8.5v15L16 31 3.01 23.5V8.5z"
+    stroke="#42d7a5"
     stroke-width="1.8"
+    stroke-linejoin="round"
+    opacity="0.4"
+  />
+  <!-- Upward chevron: momentum / progress. Symmetric about x=16, 45° arms -->
+  <path
+    d="M9.13 19.44 16 12.56l6.87 6.88"
+    stroke="#42d7a5"
+    stroke-width="2.6"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
