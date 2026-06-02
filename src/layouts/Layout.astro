@@ -4,12 +4,42 @@ import '@/styles/global.css'
 interface Props {
   title?: string
   description?: string
+  image?: string
+  ogType?: 'website' | 'article'
 }
 
 const {
   title = "The Tab Progress — Don't track time. Track momentum.",
   description = 'The Tab Progress helps you stay consistent, build momentum, and finish what you start.',
+  image = '/images/og-image.png',
+  ogType = 'website',
 } = Astro.props
+
+// Astro.site is set in astro.config.mjs (https://progress-tab.vercel.app)
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const ogImageURL = new URL(image, Astro.site)
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'The Tab Progress',
+      url: Astro.site?.href,
+      description,
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'The Tab Progress',
+      applicationCategory: 'LifestyleApplication',
+      operatingSystem: 'Web',
+      url: 'https://the-tab-progress.vercel.app/',
+      description:
+        'A personal growth web app that tracks the time you invest into meaningful activities and turns it into visible momentum — trends, streaks, and AI-assisted reflection — so you stay consistent on long-term goals.',
+      image: ogImageURL.href,
+    },
+  ],
+}
 ---
 
 <!doctype html>
@@ -20,8 +50,29 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL.href} />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <title>{title}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="The Tab Progress" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Tab Progress — Don't track time. Track momentum." />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL.href} />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
