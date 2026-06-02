@@ -1,0 +1,117 @@
+---
+import { APP_URL } from '@/lib/config'
+
+interface Props {
+  url?: string
+  class?: string
+}
+
+const { url = APP_URL, class: className = '' } = Astro.props
+
+// Clean display: drop protocol and trailing slash for the address bar.
+const displayUrl = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+---
+
+<div
+  class={`overflow-hidden rounded-xl border border-border bg-surface shadow-2xl shadow-black/40 ${className}`}
+  style="box-shadow: 0 0 0 5px rgba(255,255,255,0.06), 0 25px 50px rgba(0,0,0,0.4)"
+>
+  <!-- Chrome / top bar -->
+  <div
+    class="flex items-center gap-4 border-b border-border bg-white/[0.03] px-4 py-3"
+  >
+    <!-- Traffic lights -->
+    <div class="flex items-center gap-2">
+      <span class="h-3 w-3 rounded-full bg-[hsl(0_60%_55%)]"></span>
+      <span class="h-3 w-3 rounded-full bg-[hsl(40_70%_55%)]"></span>
+      <span class="h-3 w-3 rounded-full bg-[hsl(140_45%_50%)]"></span>
+    </div>
+
+    <!-- Address bar -->
+    <div
+      class="mx-auto flex h-8 w-full max-w-md items-center gap-2 rounded-md bg-black/30 px-3 text-xs text-muted"
+    >
+      <svg
+        class="h-3.5 w-3.5 shrink-0 opacity-70"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+      <span class="truncate">{displayUrl}</span>
+    </div>
+
+    <!-- Spacer to balance traffic lights -->
+    <div class="hidden w-[52px] sm:block"></div>
+  </div>
+
+  <!-- Body -->
+  <div class="aspect-[16/10] w-full overflow-y-auto overflow-x-hidden bg-background px-5">
+    <!-- Wrapper gives the hotspot an anchor for % positioning over the image -->
+    <div class="relative">
+      <img
+        id="browser-img"
+        src="/dashboard.webp"
+        alt="The Tab Progress dashboard"
+        class="w-full transition-opacity duration-300"
+        loading="lazy"
+        decoding="async"
+        width="1400"
+        height="1316"
+      />
+
+      <!-- Clickable hotspot over the Progress card (y 30%–59% of image height) -->
+      <button
+        id="progress-hotspot"
+        aria-label="Open Progress view"
+        class="absolute inset-x-0 cursor-pointer border-0 bg-transparent p-0 transition-all duration-200 hover:bg-white/5"
+        style="top: 38.4%; height: 32.1%;"
+      ></button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const img     = document.getElementById('browser-img') as HTMLImageElement
+  const hotspot = document.getElementById('progress-hotspot') as HTMLButtonElement
+
+  let progressLoaded = false
+  let showingProgress = false
+
+  hotspot.addEventListener('click', () => {
+    showingProgress = true
+    hotspot.style.display = 'none'
+    img.style.cursor = 'pointer'
+    img.title = 'Click to go back'
+
+    if (!progressLoaded) {
+      progressLoaded = true
+      const next = new Image()
+      next.onload = () => {
+        img.src = '/progress.webp'
+        img.width = 1400
+        img.height = 951
+      }
+      next.src = '/progress.webp'
+    } else {
+      img.src = '/progress.webp'
+      img.height = 951
+    }
+  })
+
+  img.addEventListener('click', () => {
+    if (!showingProgress) return
+    showingProgress = false
+    img.src = '/dashboard.webp'
+    img.width = 1400
+    img.height = 1316
+    img.style.cursor = ''
+    img.title = ''
+    hotspot.style.display = ''
+  })
+</script>
