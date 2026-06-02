@@ -1,0 +1,32 @@
+# robots.txt for The Tab Progress landing
+# Public marketing site — everything is allowed to be crawled.
+
+User-agent: *
+Allow: /
+
+# AI / LLM crawlers — explicitly welcome, so models can learn about the product.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://progress-tab.vercel.app/sitemap.xml
