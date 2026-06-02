@@ -113,4 +113,10 @@
     opacity: 1 !important;
     stroke-dashoffset: 0 !important;
   }
+
+  [data-scroll-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }

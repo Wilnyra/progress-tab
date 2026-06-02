@@ -4,11 +4,52 @@ import BrowserMockup from '@/components/ui/BrowserMockup.astro'
 
 <section id="showcase" class="relative py-20 sm:py-28 lg:py-32">
   <div class="mx-auto w-full max-w-container px-5 sm:px-8 lg:px-12">
+
+    <div data-scroll-reveal class="mb-12 sm:mb-16 text-center">
+      <div class="mb-5 inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-time">
+        <span class="h-1.5 w-1.5 rounded-full bg-time animate-pulse"></span>
+        Inside the app
+      </div>
+      <h2 class="font-display text-[2.2rem] font-normal leading-[0.94] text-foreground sm:text-5xl lg:text-6xl">
+        Momentum<br />made visible
+      </h2>
+    </div>
+
     <div
-      class="overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-time/15 via-surface to-background p-6 animate-fade-up sm:p-10 lg:p-16"
-      style="animation-delay:0.05s"
+      data-scroll-reveal
+      class="overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-time/15 via-surface to-background p-6 sm:p-10 lg:p-16"
     >
       <BrowserMockup />
     </div>
   </div>
 </section>
+
+<style>
+  [data-scroll-reveal] {
+    opacity: 0;
+    transform: translateY(44px);
+    transition:
+      opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-scroll-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-scroll-reveal]').forEach((el) => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('is-visible')
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.12 }
+    )
+    observer.observe(el)
+  })
+</script>

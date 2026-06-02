@@ -51,12 +51,12 @@ const displayUrl = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
   </div>
 
   <!-- Body -->
-  <div class="aspect-[16/10] w-full overflow-y-auto overflow-x-hidden bg-background px-5">
+  <div id="browser-body" class="aspect-[16/10] w-full overflow-y-auto overflow-x-hidden bg-background px-5">
     <!-- Wrapper gives the hotspot an anchor for % positioning over the image -->
     <div class="relative">
       <img
         id="browser-img"
-        src="/dashboard.webp"
+        src="/images/dashboard.webp"
         alt="The Tab Progress dashboard"
         class="w-full transition-opacity duration-300"
         loading="lazy"
@@ -79,6 +79,7 @@ const displayUrl = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
 <script>
   const img     = document.getElementById('browser-img') as HTMLImageElement
   const hotspot = document.getElementById('progress-hotspot') as HTMLButtonElement
+  const body    = document.getElementById('browser-body') as HTMLDivElement
 
   let progressLoaded = false
   let showingProgress = false
@@ -89,17 +90,19 @@ const displayUrl = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
     img.style.cursor = 'pointer'
     img.title = 'Click to go back'
 
+    body.scrollTop = 0
+
     if (!progressLoaded) {
       progressLoaded = true
       const next = new Image()
       next.onload = () => {
-        img.src = '/progress.webp'
+        img.src = '/images/progress.webp'
         img.width = 1400
         img.height = 951
       }
-      next.src = '/progress.webp'
+      next.src = '/images/progress.webp'
     } else {
-      img.src = '/progress.webp'
+      img.src = '/images/progress.webp'
       img.height = 951
     }
   })
@@ -107,7 +110,8 @@ const displayUrl = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
   img.addEventListener('click', () => {
     if (!showingProgress) return
     showingProgress = false
-    img.src = '/dashboard.webp'
+    body.scrollTop = 0
+    img.src = '/images/dashboard.webp'
     img.width = 1400
     img.height = 1316
     img.style.cursor = ''
