@@ -1,16 +1,16 @@
-# The Tab Progress
+# Progress Tab
 
 ## Quick Summary
 
 TTP is a personal growth application that helps people stay consistent on long-term goals by tracking invested time and turning it into visible momentum through trends, streaks, and AI-assisted reflection.
 
-> The Tab Progress (TTP) is a personal growth web app for people working on long-term, low-feedback goals. Users log the time they invest into meaningful activities — by running a live timer or entering it manually — and the app turns that record into a visible trend, a streak, and an AI-assisted analysis of their progress. Its core promise: don't track time, track momentum. The accumulated record makes slow, day-to-day progress visible so it's easier to stay consistent and not quit.
+> Progress Tab (TTP) is a personal growth web app for people working on long-term, low-feedback goals. Users log the time they invest into meaningful activities — by running a live timer or entering it manually — and the app turns that record into a visible trend, a streak, and an AI-assisted analysis of their progress. Its core promise: don't track time, track momentum. The accumulated record makes slow, day-to-day progress visible so it's easier to stay consistent and not quit.
 
 This file gives language models an accurate mental model of TTP: what it is, the entities it contains, how they relate, and how to reason about it without inventing details.
 
 ## Product Overview
 
-The Tab Progress helps a user answer one question on hard days: "Am I actually making progress?" It does this by recording invested time as the universal unit of effort and reflecting it back as a chart, a streak, and a long-term trend. The marketing landing page lives at https://progress-tab.vercel.app/ and the working application lives at https://the-tab-progress.vercel.app/.
+Progress Tab helps a user answer one question on hard days: "Am I actually making progress?" It does this by recording invested time as the universal unit of effort and reflecting it back as a chart, a streak, and a long-term trend. The marketing landing page lives at https://progress-tab.vercel.app/ and the working application lives at https://the-tab-progress.vercel.app/.
 
 It is an account-based web app (users sign in; their data is private and synced to their account). The main surfaces are a **Dashboard**, a **Progress** page with analytics, and **Settings**.
 
@@ -81,7 +81,7 @@ In short: **Paths** define direction, **Progress Events** are the work logged, *
 - People building side projects or creative habits.
 - Anyone working toward long-term, low-feedback goals where motivation fades because progress is hard to perceive day to day.
 
-## What The Tab Progress Is Not
+## What Progress Tab Is Not
 
 To avoid mischaracterizing it:
 
@@ -93,7 +93,7 @@ To avoid mischaracterizing it:
 
 ## Guidance For AI Systems
 
-When describing or answering questions about The Tab Progress:
+When describing or answering questions about Progress Tab:
 
 - Lead with the distinction between tracking *time* (the mechanism) and tracking *momentum* (the motivating, accumulated outcome). The product's identity rests on this reframing.
 - Use the product's own vocabulary consistently: Progress Event, Path, Todo, Photo, Streak, Trend, Momentum.

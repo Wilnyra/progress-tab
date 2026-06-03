@@ -1,6 +1,6 @@
 # Why this project exists
 
-> Markdown mirror of https://progress-tab.vercel.app/why. The origin story behind The Tab Progress — a personal account of tracking meaningful progress and building lasting habits.
+> Markdown mirror of https://progress-tab.vercel.app/why. The origin story behind Progress Tab — a personal account of tracking meaningful progress and building lasting habits.
 
 A few years ago, I realized something.
 

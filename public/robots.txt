@@ -1,4 +1,4 @@
-# robots.txt for The Tab Progress landing
+# robots.txt for Progress Tab landing
 # Public marketing site — everything is allowed to be crawled.
 
 User-agent: *

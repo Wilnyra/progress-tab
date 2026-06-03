@@ -1,10 +1,10 @@
-# The Tab Progress — Don't track time. Track momentum.
+# Progress Tab — Don't track time. Track momentum.
 
 > Markdown mirror of the home page at https://progress-tab.vercel.app/. Provided so language models and crawlers can read the page content as clean text.
 
 **Tagline:** Don't track time. Track momentum.
 
-The Tab Progress helps you stay consistent, build momentum, and finish what you start.
+Progress Tab helps you stay consistent, build momentum, and finish what you start.
 
 [**Start tracking →**](https://the-tab-progress.vercel.app/) (opens the live app)
 
@@ -12,7 +12,7 @@ The Tab Progress helps you stay consistent, build momentum, and finish what you 
 
 *Inside the app.*
 
-The Tab Progress turns the time you invest into meaningful activities into a visible, growing record of consistency. Instead of measuring raw hours as a chore, it reframes consistent effort as **momentum** — the accumulated force of small, repeated daily actions.
+Progress Tab turns the time you invest into meaningful activities into a visible, growing record of consistency. Instead of measuring raw hours as a chore, it reframes consistent effort as **momentum** — the accumulated force of small, repeated daily actions.
 
 The app's dashboard makes that momentum visible: a momentum chart and an interactive progress view show how far you've already come, so that slow, day-to-day progress stops being invisible.
 
@@ -25,5 +25,5 @@ The app's dashboard makes that momentum visible: a momentum chart and an interac
 
 ## Learn more
 
-- [Why this project exists](https://progress-tab.vercel.app/why) — the origin story behind The Tab Progress.
+- [Why this project exists](https://progress-tab.vercel.app/why) — the origin story behind Progress Tab.
 - [Open the app](https://the-tab-progress.vercel.app/) — start tracking your own momentum.

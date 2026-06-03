@@ -38,7 +38,7 @@ const foreground = Buffer.from(`
 <svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   <g font-family="'Helvetica Neue', Arial, sans-serif">
     <circle cx="80" cy="100" r="6" fill="#34d399"/>
-    <text x="98" y="107" font-size="22" font-weight="700" letter-spacing="3" fill="#9ca3af">THE TAB PROGRESS</text>
+    <text x="98" y="107" font-size="22" font-weight="700" letter-spacing="3" fill="#9ca3af">PROGRESS TAB</text>
 
     <text x="72" y="270" font-size="58" font-weight="800" letter-spacing="-1.5" fill="#fafafa">Don&#8217;t track time.</text>
     <text x="72" y="344" font-size="58" font-weight="800" letter-spacing="-1.5" fill="#34d399">Track momentum.</text>
