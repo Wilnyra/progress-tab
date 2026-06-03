@@ -1,0 +1,104 @@
+---
+---
+
+<section id="use-cases" class="relative py-20 sm:py-28 lg:py-32">
+  <div class="mx-auto w-full max-w-container px-5 sm:px-8 lg:px-12">
+
+    <div data-scroll-reveal class="mb-12 sm:mb-16 text-center">
+      <div class="mb-5 inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-time">
+        <span class="h-1.5 w-1.5 rounded-full bg-time animate-pulse"></span>
+        For whatever you're chasing
+      </div>
+      <h2 class="font-display text-[2.2rem] font-normal leading-[0.94] text-foreground sm:text-5xl lg:text-6xl">
+        Built for anything<br />worth sticking to
+      </h2>
+    </div>
+
+    <div class="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+      <article
+        data-scroll-reveal
+        style="transition-delay: 0s"
+        class="group rounded-3xl border border-border/60 bg-surface p-6 sm:p-8 transition hover:border-border"
+      >
+        <div class="mb-6 h-40 rounded-2xl bg-gradient-to-br from-time/25 via-surface to-surface flex items-center justify-center">
+          <svg class="h-12 w-12 text-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M3.6 9h16.8M3.6 15h16.8" />
+            <path d="M12 3c-2.4 2.8-3.6 5.6-3.6 9s1.2 6.2 3.6 9" />
+            <path d="M12 3c2.4 2.8 3.6 5.6 3.6 9s-1.2 6.2-3.6 9" />
+          </svg>
+        </div>
+        <h3 class="mb-2 font-semibold text-foreground">Learn a language</h3>
+        <p class="text-muted">Keep the streak alive and watch fluency compound, day after day.</p>
+      </article>
+
+      <article
+        data-scroll-reveal
+        style="transition-delay: 0.1s"
+        class="group rounded-3xl border border-border/60 bg-surface p-6 sm:p-8 transition hover:border-border"
+      >
+        <div class="mb-6 h-40 rounded-2xl bg-gradient-to-br from-momentum/25 via-surface to-surface flex items-center justify-center">
+          <svg class="h-12 w-12 text-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="2 12 6 6 10 14 14 9 18 15 22 10" />
+            <circle cx="6" cy="6" r="1.5" fill="currentColor" stroke="none" />
+            <circle cx="22" cy="10" r="1.5" fill="currentColor" stroke="none" />
+          </svg>
+        </div>
+        <h3 class="mb-2 font-semibold text-foreground">Train your body</h3>
+        <p class="text-muted">Log every session and turn workouts into momentum you can see.</p>
+      </article>
+
+      <article
+        data-scroll-reveal
+        style="transition-delay: 0.2s"
+        class="group rounded-3xl border border-border/60 bg-surface p-6 sm:p-8 transition hover:border-border"
+      >
+        <div class="mb-6 h-40 rounded-2xl bg-gradient-to-br from-time/20 via-momentum/10 to-surface flex items-center justify-center">
+          <svg class="h-12 w-12 text-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="5.5" />
+            <circle cx="12" cy="12" r="2" />
+            <line x1="12" y1="3" x2="12" y2="5" />
+            <line x1="12" y1="19" x2="12" y2="21" />
+            <line x1="3" y1="12" x2="5" y2="12" />
+            <line x1="19" y1="12" x2="21" y2="12" />
+          </svg>
+        </div>
+        <h3 class="mb-2 font-semibold text-foreground">Prep for the big day</h3>
+        <p class="text-muted">Exam, interview, or launch — see the runway shrink and arrive ready.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  [data-scroll-reveal] {
+    opacity: 0;
+    transform: translateY(44px);
+    transition:
+      opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-scroll-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-scroll-reveal]').forEach((el) => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('is-visible')
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.12 }
+    )
+    observer.observe(el)
+  })
+</script>
